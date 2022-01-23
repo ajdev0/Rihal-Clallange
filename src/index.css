@@ -24621,3 +24621,6 @@ body.dark .page-header:before {
   bottom: 50px;
   opacity: 1;
 }
+.auth{
+  margin-right: 100px !important;
+}

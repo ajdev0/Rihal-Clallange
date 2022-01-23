@@ -79,21 +79,6 @@ const Sidemenu = () => {
               <span className="pcoded-mcaret"></span>
             </Link>
           </li>
-          <li className={pathname === "/users" ? "active" : ""}>
-            <Link to="/users" className="waves-effect waves-dark">
-              <span className="pcoded-micon">
-                <i className="ti-layers"></i>
-                <b>U</b>
-              </span>
-              <span
-                className="pcoded-mtext"
-                data-i18n="nav.form-components.main"
-              >
-                Users
-              </span>
-              <span className="pcoded-mcaret"></span>
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>

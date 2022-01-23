@@ -4,7 +4,7 @@ import { ClassContext } from "../../../context/classesContext";
 const EditClass = ({ classe }) => {
   const id = classe._id;
 
-  const { editClass } = useContext(ClassContext);
+  const { editClass, error } = useContext(ClassContext);
 
   const [name, setName] = useState(classe.name);
 
@@ -31,7 +31,11 @@ const EditClass = ({ classe }) => {
           <span className="form-bar"></span>
           <label className="float-label">Class Name</label>
         </div>
-
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
         <button
           type="submit"
           className="btn waves-effect waves-light hor-grd btn-grd-primary "

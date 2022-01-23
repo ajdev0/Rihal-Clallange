@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { ClassContext } from "../../../context/classesContext";
+import Pagination from "../../common/pagination";
 import AddClasse from "./addClass";
 import Classe from "./classe";
 
@@ -11,6 +12,14 @@ const ClassList = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [classesPerPage] = useState(5);
+
+  //Pagination
+  const indexOfLastClass = currentPage * classesPerPage;
+  const indexOfFirstClass = indexOfLastClass - classesPerPage;
+  const currentClasses = classes.slice(indexOfFirstClass, indexOfLastClass);
+  const totalPageNum = Math.ceil(classes.length / classesPerPage);
   useEffect(() => {
     handleClose();
     return () => {};
@@ -41,12 +50,11 @@ const ClassList = () => {
                     <thead>
                       <tr>
                         <th>Class</th>
-                        <th>Students Enrol</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {classes.map((classe) => {
+                      {currentClasses.map((classe) => {
                         return (
                           <tr key={classe._id}>
                             <Classe classe={classe} />
@@ -55,6 +63,14 @@ const ClassList = () => {
                       })}
                     </tbody>
                   </table>
+                  {totalPageNum === 1 ? (
+                    ""
+                  ) : (
+                    <Pagination
+                      pages={totalPageNum}
+                      setCurrentPage={setCurrentPage}
+                    />
+                  )}
                 </div>
               </div>
             </div>

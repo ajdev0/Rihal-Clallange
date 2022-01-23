@@ -1,0 +1,7 @@
+{
+  "db": "mongodb://localhost/rihal-challenge",
+  "jwtPrivateKey": "",
+  "salt": 7,
+  "requiresAuth": true,
+  "port": 5000
+}

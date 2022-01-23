@@ -1,0 +1,4 @@
+{
+  "db": "rihal_db",
+  "jwtPrivateKey": "rihal_jwtPrivateKey"
+}

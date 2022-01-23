@@ -1,0 +1,106 @@
+[{
+  "_id": {
+    "$oid": "61e893ee33c58deeaa22061a"
+  },
+  "name": "student 1",
+  "classeId": {
+    "$oid": "61e893ad33c58deeaa22060f"
+  },
+  "countryId": {
+    "$oid": "61e88fab090924f6246bc4c5"
+  },
+  "dateOfBirth": {
+    "$date": "1994-08-18T00:00:00Z"
+  },
+  "createdAt": {
+    "$date": "2022-01-19T22:42:54.228Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-19T22:42:54.228Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61e8941733c58deeaa22061e"
+  },
+  "name": "student 2",
+  "classeId": {
+    "$oid": "61e893ad33c58deeaa22060f"
+  },
+  "countryId": {
+    "$oid": "61e88fab090924f6246bc49b"
+  },
+  "dateOfBirth": {
+    "$date": "1992-12-09T00:00:00Z"
+  },
+  "createdAt": {
+    "$date": "2022-01-19T22:43:35.081Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-19T22:43:35.081Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61e8943633c58deeaa220622"
+  },
+  "name": "student 3",
+  "classeId": {
+    "$oid": "61e893b633c58deeaa220611"
+  },
+  "countryId": {
+    "$oid": "61e88fab090924f6246bc434"
+  },
+  "dateOfBirth": {
+    "$date": "1993-01-20T00:00:00Z"
+  },
+  "createdAt": {
+    "$date": "2022-01-19T22:44:06.259Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-19T22:44:06.259Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61e8945233c58deeaa220626"
+  },
+  "name": "student 4",
+  "classeId": {
+    "$oid": "61e893be33c58deeaa220613"
+  },
+  "countryId": {
+    "$oid": "61e88fab090924f6246bc42b"
+  },
+  "dateOfBirth": {
+    "$date": "1998-01-05T00:00:00Z"
+  },
+  "createdAt": {
+    "$date": "2022-01-19T22:44:34.986Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-19T22:44:34.986Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61e8a8585dd750072d224add"
+  },
+  "name": "student 5",
+  "classeId": {
+    "$oid": "61e893be33c58deeaa220613"
+  },
+  "countryId": {
+    "$oid": "61e88fab090924f6246bc3f9"
+  },
+  "dateOfBirth": {
+    "$date": "2001-01-19T00:00:00Z"
+  },
+  "createdAt": {
+    "$date": "2022-01-20T00:10:00.900Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-20T00:10:00.900Z"
+  },
+  "__v": 0
+}]

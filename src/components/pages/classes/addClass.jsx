@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { ClassContext } from "../../../context/classesContext";
 
 const AddClasse = () => {
-  const { addClass } = useContext(ClassContext);
+  const { addClass, error } = useContext(ClassContext);
 
   const [classe, setClasse] = useState({ name: "" });
   const handleChange = (e) => {
@@ -32,7 +32,11 @@ const AddClasse = () => {
                 <span className="form-bar"></span>
                 <label className="float-label">Class Name</label>
               </div>
-
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
               <button
                 type="submit"
                 className="btn waves-effect waves-light hor-grd btn-grd-primary "

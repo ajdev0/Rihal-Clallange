@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navBar.css";
 
-const Navbar = () => {
+const Navbar = ({ themeToggler }) => {
   const user = localStorage.getItem("token");
 
   return (
@@ -21,6 +21,13 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+      <ul className="lightdark">
+        <li>
+          <Link to onClick={themeToggler} className="waves-effect waves-light">
+            <i className="ti-shine"></i>
+          </Link>
+        </li>
+      </ul>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">

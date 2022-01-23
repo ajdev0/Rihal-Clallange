@@ -1,14 +1,15 @@
 import http from "../services/httpService";
-
+import api from "../config.json";
 import { toast } from "react-toastify";
 const { createContext, useState, useEffect } = require("react");
 
 export const ClassContext = createContext();
 const ClassContextProvider = (props) => {
-  const url = "http://localhost:3000/api/classes";
-  const stdUrl = "http://localhost:3000/api/students/class";
+  const url = `${api.API_URL}api/classes`;
+  const stdUrl = `${api.API_URL}api/students/class`;
 
   const [classes, setClasses] = useState([]);
+  const [error, setError] = useState("");
 
   const read = async () => {
     const { data } = await http.get(url);
@@ -16,11 +17,25 @@ const ClassContextProvider = (props) => {
     setClasses(data);
   };
 
-  //add
-  const addClass = async (name) => {
-    await http.post(url, { name: name });
-    setClasses([...classes, { name }]);
+  const classeName = async (id) => {
+    const { data } = await http.get(`${url}/${id}`);
+    setClasses(data);
   };
+  //add
+  async function addClass(name) {
+    try {
+      await http.post(url, { name: name });
+      setClasses([...classes, { name }]);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+    }
+  }
 
   //update
   const editClass = async (id, updatedClass) => {
@@ -30,7 +45,13 @@ const ClassContextProvider = (props) => {
         classes.map((classe) => (classe._id === id ? updatedClass : classe))
       );
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
     }
   };
 
@@ -61,7 +82,15 @@ const ClassContextProvider = (props) => {
 
   return (
     <ClassContext.Provider
-      value={{ classes, editClass, addClass, stdPerClass, deleteClass }}
+      value={{
+        classes,
+        editClass,
+        addClass,
+        stdPerClass,
+        deleteClass,
+        classeName,
+        error,
+      }}
     >
       {props.children}
     </ClassContext.Provider>

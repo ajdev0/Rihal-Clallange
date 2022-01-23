@@ -1,107 +1,70 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import { StudentContext } from "../../../context/studentContext";
+import Loading from "../../common/loading";
+import EditStudent from "./editStudent";
 
-const Student = () => {
+const Student = ({ student, classes, countries }) => {
+  const { deleteStudent } = useContext(StudentContext);
+
+  let clsName = classes.find(function (classe, index) {
+    if (classe._id == student.classeId) return classe.name;
+  });
+
+  // console.log(clsName.name);
+
+  let countryName = countries.find(function (country, index) {
+    if (country._id == student.countryId) return country.name;
+  });
+  // console.log(countryName);
+
+  const [show, setShow] = useState(false);
+  //const [age, setAge] = useState(0);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  function getYears(x) {
+    return Math.floor(x / 1000 / 60 / 60 / 24 / 365);
+  }
+  let newDate = new Date();
+  let dob = new Date(student.dateOfBirth);
+  let age = getYears(newDate - dob);
+
   return (
     <>
-      <div className="main-body">
-        <div className="page-wrapper">
-          <div className="page-body">
-            <div classNameName=" col-md-6">
-              <div className="card">
-                <div className="card-header">
-                  <h4>Add Student</h4>
-                </div>
-                <div className="card-block">
-                  <form className="form-material">
-                    <div className="form-group form-default form-static-label row">
-                      <div className="col-sm-6">
-                        <input
-                          type="text"
-                          name="footer-email"
-                          className="form-control"
-                          placeholder="Enter Student Name"
-                          required=""
-                        />
-                        <span className="form-bar"></span>
-                        <label className="float-label">Student</label>
-                      </div>
-                      <div className="col-sm-6">
-                        <input
-                          type="date"
-                          name="footer-email"
-                          className="form-control"
-                          placeholder="Enter Student Age"
-                          required=""
-                        />
-                        <span className="form-bar"></span>
-                        <label className="float-label">Student age</label>
-                      </div>
-                    </div>
-                    <div className="form-group form-default form-static-label row">
-                      <div className="col-sm-6">
-                        <select class="form-control">
-                          <option>Default select</option>
-                        </select>
-                        <span className="form-bar"></span>
-                        <label className="float-label">Student Class</label>
-                      </div>
-                      <div className="col-sm-6">
-                        <select class="form-control">
-                          <option>Default select</option>
-                        </select>
-                        <span className="form-bar"></span>
-                        <label className="float-label">Student Country</label>
-                      </div>
-                    </div>
+      <td>{student.name}</td>
+      <td>{clsName ? clsName.name : <Loading />}</td>
+      <td>{countryName ? countryName.name : <Loading />}</td>
+      <td>{age}</td>
 
-                    <button className="btn waves-effect waves-light hor-grd btn-grd-primary ">
-                      Add Student
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
+      <td>
+        <button
+          onClick={handleShow}
+          className="btn btn-success waves-effect waves-light"
+        >
+          Edit
+        </button>
 
-            <div className="card">
-              <div className="card-header">
-                <h4>Students</h4>
-              </div>
-              <div className="card-block table-border-style">
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Student</th>
-                        <th>Class</th>
-                        <th>Country</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>
-                          <button className="btn btn-success waves-effect waves-light">
-                            Edit
-                          </button>
-
-                          <button className="ml-4 btn btn-danger waves-effect waves-light ">
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <button
+          onClick={() => deleteStudent(student._id)}
+          className="ml-4 btn btn-danger waves-effect waves-light "
+        >
+          Delete
+        </button>
+      </td>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Student</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditStudent student={student} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

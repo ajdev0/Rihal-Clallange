@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
-const Sidebar = () => {
+const Sidebar = ({ themeToggler }) => {
+  const [user, setUser] = useState([]);
+
+  const getUser = async () => {
+    const token = localStorage.getItem("token");
+    const user = jwtDecode(token);
+
+    setUser(user);
+  };
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <>
       <nav className="navbar header-navbar pcoded-header">
@@ -46,10 +58,21 @@ const Sidebar = () => {
           </div>
 
           <div className="navbar-container container-fluid">
+            <ul className="nav-left">
+              <li>
+                <Link
+                  to
+                  onClick={themeToggler}
+                  className="waves-effect waves-light"
+                >
+                  <i className="ti-shine"></i>
+                </Link>
+              </li>
+            </ul>
             <ul className="nav-right">
               <li className="user-profile header-notification">
                 <Link to="#" className="waves-effect waves-light">
-                  <span>John Doe</span>
+                  <span>{user.name}</span>
                   <i className="ti-angle-down"></i>
                 </Link>
                 <ul className="show-notification profile-notification">

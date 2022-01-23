@@ -4,25 +4,16 @@ import { Modal, Button } from "react-bootstrap";
 import { ClassContext } from "../../../context/classesContext";
 const Classe = ({ classe }) => {
   //
-  const { stdPerClass, deleteClass } = useContext(ClassContext);
-  const [stdCount, setStdCount] = useState([]);
+  const { deleteClass } = useContext(ClassContext);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const getStdPerClass = async () => {
-    const std = await stdPerClass(classe._id);
-    setStdCount(std);
-  };
-
-  useEffect(() => {
-    getStdPerClass();
-  }, [stdPerClass]);
   return (
     <>
       <td>{classe.name}</td>
-      <td>{stdCount}</td>
 
       <td>
         <button
