@@ -65,11 +65,17 @@ Launches the test runner in the interactive watch mode.\
 
 Run it at the server dirctory
 
-### countries `mongoimport --db "rihal-challenge" --collection countries --drop --file data/seed/countries.json --jsonArray`
+### countries
 
-### students `mongoimport --db rihal-challenge --collection students --drop --file data/seed/students.json --jsonArray`
+- `mongoimport --db "rihal-challenge" --collection countries --drop --file data/seed/countries.json --jsonArray`
 
-### classes `mongoimport --db rihal-challenge --collection classes --drop --file data/seed/classes.json --jsonArray`
+### students
+
+- `mongoimport --db rihal-challenge --collection students --drop --file data/seed/students.json --jsonArray`
+
+### classes
+
+- `mongoimport --db rihal-challenge --collection classes --drop --file data/seed/classes.json --jsonArray`
 
 ## Jwt Private Key script
 
