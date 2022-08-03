@@ -1,11 +1,4 @@
-# Getting Started with Rial Challenge
 
-This project live Link (http://rihal-challenge.zoolmoda.com).
-
-# Login Details
-
-Email : abraradam@gmail.com
-password : Abrar099@
 
 ### Project status
 
